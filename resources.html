@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Bungee+Shade&family=Permanent+Marker&display=swap" rel="stylesheet">
+<title>Resources — Digital Art Lab</title>
+<style>
+
+:root{--coral:#FF6B6B;--green:#00D68F;--yellow:#FFE44D;--purple:#9B59F0;--blue:#4FC3F7;--orange:#FF9F43;--pink:#FF6EB4;--navy:#1A1A2E;--white:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body,h1,h2,h3,h4,h5,h6,p,span,div,li,a,button,small,b,strong,em{font-family:'Nunito',sans-serif}
+body{background:#F8F6FF;color:var(--navy);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:78px;background:var(--white);z-index:200;display:flex;flex-direction:column;align-items:center;padding:1rem 0;box-shadow:4px 0 15px rgba(0,0,0,.05)}
+.sidebar::after{content:'';position:absolute;right:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--coral),var(--green),var(--yellow),var(--purple),var(--blue))}
+.sl{font-size:.6rem;font-weight:900;text-align:center;color:var(--navy);margin-bottom:1rem}
+.sn{display:flex;flex-direction:column;align-items:center;gap:.5rem;list-style:none;flex:1}
+.sn a{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;transition:all .2s;position:relative;color:var(--white)}
+.sn a:hover{transform:scale(1.1);filter:brightness(1.15)}
+.sn a svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sn a .t{position:absolute;left:60px;background:var(--navy);color:var(--white);padding:.25rem .6rem;border-radius:6px;font-size:.65rem;font-weight:800;white-space:nowrap;opacity:0;pointer-events:none;transition:all .15s;transform:translateX(-4px);z-index:999}
+.sn a:hover .t{opacity:1;transform:translateX(0)}
+.s-home{background:var(--navy)}.s-about{background:var(--coral)}.s-approach{background:var(--green)}.s-resources{background:var(--yellow);color:var(--navy)!important}.s-lessons{background:var(--purple)}.s-research{background:var(--blue)}
+.main{margin-left:78px}
+
+.page-hero{position:relative;padding:4rem 2.5rem 3rem;text-align:center;overflow:hidden;min-height:35vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.page-hero canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.page-hero #phb{z-index:0}.page-hero #pha{z-index:1}
+.page-hero .hc{position:relative;z-index:2}
+.page-hero h1{font-family:'Bungee Shade',cursive;font-size:clamp(1.6rem,4vw,2.8rem);color:var(--white);margin-bottom:.6rem;text-shadow:3px 3px 0 rgba(0,0,0,.15)}
+.page-hero p{font-size:clamp(.9rem,1.8vw,1.15rem);color:rgba(255,255,255,.85);max-width:600px;margin:0 auto;font-weight:700;line-height:1.6}
+
+.sec{position:relative;padding:3.5rem 2.5rem;overflow:hidden}
+.sec canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.sec .inner{position:relative;z-index:1;max-width:1100px;margin:0 auto}
+.sec h2{font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:900;color:var(--navy);margin-bottom:1.5rem}
+.sec h2 em{font-style:normal;color:var(--coral)}
+.sec p{font-size:.93rem;line-height:1.8;color:#6B7B9E;font-weight:700;margin-bottom:1rem}
+.sec strong{color:var(--navy)}
+
+.btn{padding:.8rem 1.8rem;border-radius:50px;font-size:1rem;font-weight:900;border:none;cursor:pointer;transition:all .25s;display:inline-flex;align-items:center;gap:.5rem;box-shadow:0 4px 0 rgba(0,0,0,.2)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 7px 0 rgba(0,0,0,.15)}
+.bw{background:var(--white);color:var(--navy)}.bg{background:var(--green);color:var(--white)}.bc{background:var(--coral);color:var(--white)}.bp{background:var(--purple);color:var(--white)}
+
+.tag-cloud{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.tg{padding:.3rem .8rem;border-radius:50px;font-weight:900;font-size:.72rem;border:3px solid;cursor:default;background:var(--white);transition:all .2s}
+.tg:hover{transform:scale(1.08) rotate(-2deg)}
+.tg:nth-child(1){border-color:var(--coral);color:var(--coral)}.tg:nth-child(2){border-color:var(--blue);color:var(--blue)}.tg:nth-child(3){border-color:var(--purple);color:var(--purple)}.tg:nth-child(4){border-color:var(--orange);color:var(--orange)}.tg:nth-child(5){border-color:var(--green);color:var(--green)}.tg:nth-child(6){border-color:var(--pink);color:var(--pink)}
+
+.fcd{padding:1rem 1.2rem;border-radius:14px;display:flex;gap:.8rem;align-items:flex-start;background:var(--white);transition:all .2s;cursor:default;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.fcd:hover{transform:translateX(6px)}
+.fcd:nth-child(1){border-left:5px solid var(--coral)}.fcd:nth-child(2){border-left:5px solid var(--green)}.fcd:nth-child(3){border-left:5px solid var(--purple)}.fcd:nth-child(4){border-left:5px solid var(--yellow)}.fcd:nth-child(5){border-left:5px solid var(--blue)}.fcd:nth-child(6){border-left:5px solid var(--pink)}
+.fcd b{font-size:.88rem;color:var(--navy);display:block;margin-bottom:.15rem}
+.fcd small{font-size:.8rem;line-height:1.5;color:#6B7B9E;font-weight:700}
+
+.pcard{background:var(--white);border-radius:22px;padding:2rem 1.8rem;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,.06);transition:all .25s;position:relative;overflow:hidden}
+.pcard:hover{transform:translateY(-6px)}
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:6px}
+.pcard:nth-child(1)::before{background:var(--coral)}.pcard:nth-child(2)::before{background:var(--green)}.pcard:nth-child(3)::before{background:var(--purple)}
+.pcard .pi{font-size:2.2rem;margin-bottom:.6rem;display:block}
+.pcard h3{font-size:1rem;font-weight:900;color:var(--navy);margin-bottom:.4rem}
+.pcard p{font-size:.85rem;color:#6B7B9E;font-weight:700}
+
+.scard{background:var(--white);border-radius:22px;padding:1.6rem 1.3rem;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,.05);transition:all .25s}
+.scard:hover{transform:translateY(-5px)}
+.scard .snum{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:900;color:var(--white);margin:0 auto .7rem}
+.scard:nth-child(1) .snum{background:var(--coral)}.scard:nth-child(2) .snum{background:var(--green)}.scard:nth-child(3) .snum{background:var(--purple)}.scard:nth-child(4) .snum{background:var(--orange)}
+.scard h4{font-size:.9rem;font-weight:900;color:var(--navy);margin-bottom:.3rem}
+.scard p{font-size:.8rem;color:#6B7B9E;font-weight:700}
+
+footer{background:linear-gradient(160deg,#C9A5FF,#9B59F0,#7B3FD0);color:var(--white);padding:3rem 2.5rem 1.2rem;position:relative;overflow:hidden}
+footer canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;max-width:1100px;margin:0 auto 1.5rem;position:relative;z-index:1}
+.fg h4{font-weight:900;color:var(--yellow);margin-bottom:.7rem;font-size:.95rem}
+.fg ul{list-style:none}.fg li{margin-bottom:.4rem}.fg a{font-size:.82rem;color:rgba(255,255,255,.6);font-weight:700;transition:color .2s}.fg a:hover{color:var(--yellow)}
+.fb{border-top:1px solid rgba(255,255,255,.15);padding-top:.8rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;max-width:1100px;margin:0 auto;font-size:.72rem;color:rgba(255,255,255,.4);font-weight:700;position:relative;z-index:1}.fb a{color:var(--yellow)}
+
+@media(max-width:900px){.sidebar{width:56px}.sn a{width:38px;height:38px}.main{margin-left:56px}.fg{grid-template-columns:1fr}.page-hero,.sec{padding:2rem 1.2rem}}
+@media(max-width:600px){.sidebar{display:none}.main{margin-left:0}}
+
+.page-hero{background:linear-gradient(160deg,#FFF0A0,#FFE44D,#E6C800)}
+@media(max-width:900px){.inner [style*="repeat(4"]{grid-template-columns:1fr 1fr!important}.inner [style*="repeat(5"]{grid-template-columns:repeat(3,1fr)!important}}@media(max-width:600px){.inner [style*="repeat(4"]{grid-template-columns:1fr!important}.inner [style*="repeat(5"]{grid-template-columns:1fr 1fr!important}}
+</style>
+</head>
+<body>
+<aside class="sidebar"><div class="sl">DAL</div>
+<ul class="sn">
+<li><a href="index.html" class="s-home"><svg viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h-2v-4h2v4z"/></svg><span class="t">Home</span></a></li>
+<li><a href="about.html" class="s-about"><svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><span class="t">About</span></a></li>
+<li><a href="approach.html" class="s-approach"><svg viewBox="0 0 24 24"><path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg><span class="t">Approach</span></a></li>
+<li><a href="resources.html" class="s-resources" style="box-shadow:inset 0 0 0 3px rgba(255,255,255,.4)"><svg viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg><span class="t">Resources</span></a></li>
+<li><a href="talking-avatar.html" class="s-lessons"><svg viewBox="0 0 24 24"><path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span class="t">Lessons</span></a></li>
+<li><a href="research.html" class="s-research"><svg viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span class="t">Research</span></a></li>
+</ul></aside>
+<div class="main">
+<div class="page-hero"><canvas id="phb"></canvas><canvas id="pha"></canvas>
+<div class="hc"><h1>Explore the Platform</h1><p>Eight sections of classroom-ready resources — from lesson ideas and tool tutorials to CPD material and downloadable packs.</p></div></div>
+
+<div class="sec" style="background:var(--white)"><canvas id="s1"></canvas>
+<div class="inner"><h2>All <em>Resources</em></h2>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem">
+<a href="talking-avatar.html" class="fcd" style="border-left:5px solid var(--purple);cursor:pointer"><div><b>💡 Lesson Ideas →</b><small>Starting points for digital art lessons — adaptable for any primary class level.</small></div></a>
+<div class="fcd" style="border-left:5px solid var(--blue)"><div><b>🛠️ Tool Tutorials</b><small>Short, accessible guides to digital tools — no specialist knowledge required.</small></div></div>
+<div class="fcd" style="border-left:5px solid var(--coral)"><div><b>🖼️ Workshop Exemplars</b><small>Real examples from DAL workshops — showing process and outcomes at every stage.</small></div></div>
+<div class="fcd" style="border-left:5px solid var(--yellow)"><div><b>📋 Curriculum Connections</b><small>Every resource mapped to the Irish Primary Curriculum — strands and class levels.</small></div></div>
+<div class="fcd" style="border-left:5px solid var(--orange)"><div><b>🎓 Teacher CPD</b><small>Professional learning material — building confidence and implementation support.</small></div></div>
+<div class="fcd" style="border-left:5px solid var(--pink)"><div><b>🎬 Process Videos</b><small>Behind-the-scenes footage from the workshop — creativity unfolding in real time.</small></div></div>
+<div class="fcd" style="border-left:5px solid var(--green)"><div><b>📦 Download Packs</b><small>PDF resources, planning templates, and printable guides for your classroom.</small></div></div>
+<div class="fcd" style="border-left:5px solid var(--navy)"><div><b>🗣️ Teacher Voices</b><small>Honest reflections — what worked, what surprised them, what they'd do differently.</small></div></div>
+</div></div></div>
+<div class="sec" style="background:linear-gradient(180deg,#FFF8F0,#FFECDA)"><canvas id="s2"></canvas>
+<div class="inner"><h2>Experiments <em>in Progress</em></h2>
+<p style="max-width:600px">Workshop photos, process videos, and exemplars will appear here as the project develops.</p>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:1rem">
+<div style="aspect-ratio:1;border-radius:18px;background:linear-gradient(135deg,#FF6B6B22,#FF6B6B44);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;position:relative"><span style="position:absolute;top:.5rem;right:.5rem;background:var(--coral);color:var(--white);font-size:.55rem;font-weight:900;padding:.15rem .5rem;border-radius:50px">Coming Soon</span><span style="font-size:2rem">🎨</span><span style="font-size:.78rem;font-weight:800;color:var(--navy)">Workshop Photography</span></div>
+<div style="aspect-ratio:1;border-radius:18px;background:linear-gradient(135deg,#4FC3F722,#4FC3F744);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem"><span style="font-size:2rem">🎬</span><span style="font-size:.78rem;font-weight:800;color:var(--navy)">Process Video</span></div>
+<div style="aspect-ratio:1;border-radius:18px;background:linear-gradient(135deg,#9B59F022,#9B59F044);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem"><span style="font-size:2rem">🖼️</span><span style="font-size:.78rem;font-weight:800;color:var(--navy)">Exemplar Work</span></div>
+<div style="aspect-ratio:1;border-radius:18px;background:linear-gradient(135deg,#FFE44D33,#FFE44D55);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem"><span style="font-size:2rem">📱</span><span style="font-size:.78rem;font-weight:800;color:var(--navy)">Digital Output</span></div>
+<div style="aspect-ratio:1;border-radius:18px;background:linear-gradient(135deg,#FF9F4322,#FF9F4344);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem"><span style="font-size:2rem">✏️</span><span style="font-size:.78rem;font-weight:800;color:var(--navy)">Making Process</span></div>
+</div></div></div>
+<footer><canvas id="ftBg"></canvas>
+<div class="fg"><div><div style="font-size:1.3rem;font-weight:900;margin-bottom:.5rem"><span style="color:var(--yellow)">D</span><span style="color:rgba(255,255,255,.7)">igital </span><span style="color:var(--green)">A</span><span style="color:rgba(255,255,255,.7)">rt </span><span style="color:var(--coral)">L</span><span style="color:rgba(255,255,255,.7)">ab</span></div><p style="font-size:.82rem;line-height:1.6;color:rgba(255,255,255,.5);font-weight:700;margin:0">A creative platform for Irish primary teachers.</p></div><div><h4>Platform</h4><ul><li><a href="resources.html">Resources</a></li><li><a href="talking-avatar.html">Lesson Ideas</a></li><li><a href="about.html">About</a></li><li><a href="approach.html">Approach</a></li><li><a href="research.html">Research</a></li></ul></div><div><h4>Project</h4><ul><li><a href="research.html">Research</a></li><li><a href="#">Feedback</a></li><li><a href="#">Contact</a></li></ul></div></div><div class="fb"><p>Digital Art Lab · <a href="https://www.dcu.ie" target="_blank">Dublin City University</a> · Institute of Education</p></div></footer>
+</div>
+<script>
+
+const r=(a,b)=>Math.random()*(b-a)+a,p=a=>a[Math.floor(Math.random()*a.length)];
+// Splatter with spray
+function sp(c,x,y,cl,sz){c.fillStyle=cl;const n=Math.floor(r(5,9));c.beginPath();for(let i=0;i<n;i++){const a=i/n*Math.PI*2,R=sz*(.5+r(0,.6)),px=x+Math.cos(a)*R,py=y+Math.sin(a)*R;i===0?c.moveTo(px,py):c.quadraticCurveTo(x+Math.cos(a-.3)*R*r(.8,1.4),y+Math.sin(a-.3)*R*r(.8,1.4),px,py);}c.closePath();c.fill();for(let i=0;i<r(8,20);i++){const a=r(0,Math.PI*2),d=r(sz*.3,sz*2.2),dr=r(.5,sz*.13);c.beginPath();c.arc(x+Math.cos(a)*d,y+Math.sin(a)*d,dr,0,Math.PI*2);c.fill();}}
+// Drip
+function drip(c,x,sy,cl,ln,w){c.strokeStyle=cl;c.fillStyle=cl;c.lineWidth=w;c.lineCap='round';c.beginPath();c.moveTo(x,sy);let cy=sy;while(cy<sy+ln){cy+=r(5,15);c.lineTo(x+r(-w*.4,w*.4),cy);}c.stroke();c.beginPath();c.ellipse(x+r(-1,1),cy,w*r(.7,1.4),w*r(1,1.8),0,0,Math.PI*2);c.fill();}
+// Wobbly circle
+function wc(c,x,y,R,cl,lw){c.strokeStyle=cl;c.lineWidth=lw;c.beginPath();const n=Math.floor(r(18,30));for(let i=0;i<=n;i++){const a=i/n*Math.PI*2,rr=R+r(-R*.25,R*.25);i===0?c.moveTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr):c.lineTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr);}c.closePath();c.stroke();}
+// Sketchy X
+function sx(c,x,y,s,cl){c.strokeStyle=cl;c.lineWidth=r(2,4);c.lineCap='round';const j=3;let st=Math.max(4,s/1.5);c.beginPath();c.moveTo(x-s+r(-j,j),y-s+r(-j,j));for(let i=1;i<=st;i++){const t=i/st;c.lineTo(x-s+2*s*t+r(-j,j),y-s+2*s*t+r(-j,j));}c.stroke();c.beginPath();c.moveTo(x+s+r(-j,j),y-s+r(-j,j));for(let i=1;i<=st;i++){const t=i/st;c.lineTo(x+s-2*s*t+r(-j,j),y-s+2*s*t+r(-j,j));}c.stroke();}
+
+// PAINT SECTION — with LOTS of black
+function ps(id){
+  const cv=document.getElementById(id);if(!cv)return;
+  const sc=cv.parentElement;cv.width=sc.offsetWidth;cv.height=sc.offsetHeight;
+  const c=cv.getContext('2d'),W=cv.width,H=cv.height;
+  const colorful=['#FFE44D','#FF6B6B','#00D68F','#FF6EB4','#FF9F43','#4FC3F7','#fff'];
+  // Coloured splatters
+  for(let i=0;i<r(6,12);i++)sp(c,r(0,W),r(0,H),p(colorful)+'25',r(6,40));
+  // BLACK splatters — bigger, more opaque, more of them
+  for(let i=0;i<r(8,18);i++)sp(c,r(0,W),r(0,H),'rgba(26,26,46,'+r(.15,.5)+')',r(8,55));
+  // BLACK drips from top
+  for(let i=0;i<r(4,10);i++)drip(c,r(0,W),r(-10,5),'rgba(26,26,46,'+r(.12,.4)+')',r(20,H*.3),r(2,5));
+  // Coloured drips
+  for(let i=0;i<r(2,5);i++)drip(c,r(0,W),r(-5,5),p(colorful)+'22',r(15,H*.15),r(2,3.5));
+  // Wobbly circles
+  for(let i=0;i<r(2,5);i++)wc(c,r(0,W),r(0,H),r(10,35),p(colorful)+'22',r(1.5,3));
+  // Black X marks
+  for(let i=0;i<r(3,8);i++)sx(c,r(0,W),r(0,H),r(5,14),'rgba(26,26,46,'+r(.1,.35)+')');
+  // Coloured X marks
+  for(let i=0;i<r(2,4);i++)sx(c,r(0,W),r(0,H),r(4,10),p(colorful)+'20');
+  // Scratchy lines
+  for(let i=0;i<r(2,5);i++){c.strokeStyle='rgba(26,26,46,'+r(.05,.15)+')';c.lineWidth=r(1,3);c.lineCap='round';const x1=r(0,W),y1=r(0,H),x2=r(0,W),y2=r(0,H);const s=Math.max(6,Math.hypot(x2-x1,y2-y1)/3);c.beginPath();c.moveTo(x1,y1);for(let j=1;j<=s;j++){const t=j/s;c.lineTo(x1+(x2-x1)*t+r(-6,6),y1+(y2-y1)*t+r(-6,6));}c.stroke();}
+}
+
+// Mini crown
+function paintMiniCrown(){const cv=document.getElementById('mc');if(!cv)return;cv.width=50;cv.height=38;const c=cv.getContext('2d');function bs(x1,y1,x2,y2,col,w){const len=Math.hypot(x2-x1,y2-y1);const steps=Math.max(8,len/2);for(let i=0;i<steps;i++){const t=i/steps;if(Math.random()<.12)continue;c.globalAlpha=r(.3,.7);c.fillStyle=col;c.beginPath();c.ellipse(x1+(x2-x1)*t+r(-3,3),y1+(y2-y1)*t+r(-3,3),w*r(.3,1),w*r(.2,.6),r(0,Math.PI),0,Math.PI*2);c.fill();}c.globalAlpha=1;}[[5,35,12,8],[12,8,18,22],[18,22,25,3],[25,3,32,22],[32,22,38,8],[38,8,45,35],[5,35,45,35]].forEach(s=>bs(s[0],s[1],s[2],s[3],'rgba(255,255,255,.6)',r(2,3.5)));}
+
+// Animated particles
+const PC=['#FFE44D','#FF6B6B','#00D68F','#FF6EB4','#FF9F43','#4FC3F7','#fff','#1A1A2E','#1A1A2E'];
+class Pt{constructor(W,H){this.rs(W,H);this.y=r(0,H);}rs(W,H){this.x=r(0,W);this.y=H+r(10,50);this.R=r(2,7);this.vx=r(-.3,.3);this.vy=r(-.7,-.12);this.c=p(PC);this.a=r(.08,.4);this.pu=r(.02,.05);this.ph=r(0,Math.PI*2);this.ro=r(0,Math.PI*2);this.rv=r(-.02,.02);this.sh=Math.floor(r(0,4));}u(W,H){this.x+=this.vx;this.y+=this.vy;this.ph+=this.pu;this.ro+=this.rv;this.a=r(.08,.35)+Math.sin(this.ph)*.12;if(this.y<-20||this.x<-20||this.x>W+20)this.rs(W,H);}d(c){c.save();c.translate(this.x,this.y);c.rotate(this.ro);c.globalAlpha=Math.max(0,this.a);if(this.sh===0){c.beginPath();c.arc(0,0,this.R,0,Math.PI*2);c.fillStyle=this.c;c.fill();}else if(this.sh===1){c.strokeStyle=this.c;c.lineWidth=1.5;c.beginPath();c.moveTo(-this.R,-this.R);c.lineTo(this.R,this.R);c.moveTo(this.R,-this.R);c.lineTo(-this.R,this.R);c.stroke();}else if(this.sh===2){c.fillStyle=this.c;c.fillRect(-this.R/2,-this.R/2,this.R,this.R);}else{c.beginPath();c.arc(0,0,this.R,0,Math.PI*2);c.strokeStyle=this.c;c.lineWidth=1.5;c.stroke();}c.restore();}}
+function ia(id){const cv=document.getElementById(id);if(!cv)return;const sc=cv.parentElement;cv.width=sc.offsetWidth;cv.height=sc.offsetHeight;const c=cv.getContext('2d'),W=cv.width,H=cv.height;const pts=[];for(let i=0;i<40;i++)pts.push(new Pt(W,H));(function lp(){c.clearRect(0,0,W,H);pts.forEach(q=>{q.u(W,H);q.d(c);});requestAnimationFrame(lp);})();}
+
+function init(){ps('hb');paintMiniCrown();ps('cb');ps('fb2');ps('lb');ps('ftBg');ia('ha');ia('ca');ia('la');}
+window.addEventListener('load',init);
+window.addEventListener('resize',()=>{clearTimeout(window._rt);window._rt=setTimeout(init,250);});
+
+
+function init(){
+  document.querySelectorAll('.sec canvas, .page-hero canvas:first-of-type, footer canvas').forEach(c=>{if(c.id!=='pha')ps(c.id);});
+  if(document.getElementById('pha'))ia('pha');
+}
+window.addEventListener('load',init);
+window.addEventListener('resize',()=>{clearTimeout(window._rt);window._rt=setTimeout(init,250);});
+
+</script>
+</body>
+</html>
